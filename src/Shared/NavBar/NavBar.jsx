@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Container from '../../components/Container/Container';
-
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
+    const { user, logOut } = useAuth();
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
     const userDropdownRef = useRef(null);
@@ -29,7 +30,6 @@ const Navbar = () => {
         }
     };
 
-
     useEffect(() => {
         document.addEventListener('click', handleClickOutside);
 
@@ -38,18 +38,27 @@ const Navbar = () => {
         };
     }, []);
 
+    const handelLogOut = () => {
+        logOut()
+            .then(result => {
+                console.log(result.user);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
+
     const navLinks = (
         <>
-            <Link to="/" className="block py-2  text-black font-semibold hover:text-red-500">
+            <Link to="/" className="block py-2 text-black font-semibold hover:text-red-500">
                 Home
             </Link>
-            <Link to="/biodata" className="block py-2  text-black font-semibold hover:text-red-500">
-            Biodatas
+            <Link to="/biodata" className="block py-2 text-black font-semibold hover:text-red-500">
+                Biodatas
             </Link>
             <Link to="/about" className="block py-2 text-black font-semibold hover:text-red-500">
-            About Us
+                About Us
             </Link>
-           
             <Link to="/contact" className="block py-2 text-black font-semibold hover:text-red-500">
                 Contact
             </Link>
@@ -57,27 +66,26 @@ const Navbar = () => {
                 Login
             </Link>
             <Link to="/signUp" className="block py-2 text-black font-semibold hover:text-red-500">
-            sign Out
+                Sign Out
             </Link>
         </>
     );
 
     return (
-
         <Container>
-            <nav className=" bg-gray-200 p-4 text-xl bg-opacity-20 text-white z-10 fixed top-0 left-0 w-full ">
+            <nav className="bg-gray-200 p-4 text-xl bg-opacity-20 text-white z-10 fixed top-0 left-0 w-full">
                 <div className="container mx-auto flex justify-between items-center">
-                    <div className=" font-bold text-red-500 text-xl">
-                        <Link to="/">Your Logo</Link>
+                    <div className="font-bold text-red-500 text-xl">
+                        <Link to="/" aria-label="Home">
+                            Your Logo
+                        </Link>
                     </div>
 
-                    {/* Navbar links for larger screens */}
                     <div className="hidden md:flex space-x-4">{navLinks}</div>
 
-                    {/* Mobile menu button for smaller screens */}
                     <div className="md:hidden">
                         <button
-                            className="text-white focus:outline-none"
+                            className="text-white focus:outline-none mobile-menu-icon"
                             onClick={toggleMobileMenu}
                         >
                             <svg
@@ -92,11 +100,10 @@ const Navbar = () => {
                                     strokeLinejoin="round"
                                     strokeWidth="2"
                                     d="M4 6h16M4 12h16m-7 6h7"
-                                ></path>
+                                />
                             </svg>
                         </button>
 
-                        {/* Mobile menu */}
                         {isMobileMenuOpen && (
                             <div className="absolute top-0 left-0 right-0 z-50 bg-gray-800 text-white p-4">
                                 {navLinks}
@@ -104,24 +111,33 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* User dropdown */}
                     <div className="relative inline-block text-left" ref={userDropdownRef}>
-                        <button
-                            type="button"
-                            className="inline-flex items-center justify-center w-12 h-12 rounded-full focus:outline-none"
-                            id="user-menu"
-                            aria-haspopup="true"
-                            aria-expanded={isUserDropdownOpen}
-                            onClick={toggleUserDropdown}
-                        >
-                            <img
-                                className="w-10 h-10 rounded-full object-cover"
-                                src="https://placekitten.com/200/200"
-                                alt="User"
-                            />
-                        </button>
+                        {user?.email ? (
+                            <button
+                                type="button"
+                                className="inline-flex items-center justify-center w-12 h-12 rounded-full focus:outline-none"
+                                id="user-menu"
+                                aria-haspopup="true"
+                                aria-expanded={isUserDropdownOpen}
+                                onClick={toggleUserDropdown}
+                            >
+                                <img
+                                    className="w-10 h-10 rounded-full object-cover"
+                                    src={user?.photoURL || 'default-image-url'}
+                                    alt="User"
+                                />
+                            </button>
+                        ) : (
+                            <Link to="/login">
+                                <button
+                                    className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                                    role="menuitem"
+                                >
+                                    Login
+                                </button>
+                            </Link>
+                        )}
 
-                        {/* User dropdown menu */}
                         {isUserDropdownOpen && (
                             <div
                                 className="origin-top-right absolute right-0 mt-2 w-52 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -131,11 +147,10 @@ const Navbar = () => {
                             >
                                 <div className="py-1" role="none">
                                     <Link
-                                        to="/profile"
                                         className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                     >
-                                        Profile
+                                        {user?.displayName}
                                     </Link>
                                     <Link
                                         to="/settings"
@@ -146,7 +161,7 @@ const Navbar = () => {
                                     </Link>
                                     <button
                                         className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
-                                        onClick={() => console.log('Sign Out')}
+                                        onClick={handelLogOut}
                                         role="menuitem"
                                     >
                                         Sign Out
@@ -158,7 +173,6 @@ const Navbar = () => {
                 </div>
             </nav>
         </Container>
-
     );
 };
 
