@@ -1,0 +1,50 @@
+[
+  {
+    "biodataId": 1,
+    "biodataType": "Male",
+    "profileImage": "https://i.ibb.co/ZxRgCZB/R.jpg",
+    "permanentDivision": "Dhaka",
+    "age": 23,
+    "occupation": "Student"
+  },
+  {
+    "biodataId": 2,
+    "biodataType": "Female",
+    "profileImage": "female_profile_image_url1.jpg",
+    "permanentDivision": "Chattagram",
+    "age": 45,
+    "occupation": "Job"
+  },
+  {
+    "biodataId": 3,
+    "biodataType": "Male",
+    "profileImage": "male_profile_image_url2.jpg",
+    "permanentDivision": "Rangpur",
+    "age": 30,
+    "occupation": "House wife"
+  },
+  {
+    "biodataId": 4,
+    "biodataType": "Female",
+    "profileImage": "female_profile_image_url2.jpg",
+    "permanentDivision": "Barisal",
+    "age": 28,
+    "occupation": "Job"
+  },
+  {
+    "biodataId": 5,
+    "biodataType": "Male",
+    "profileImage": "male_profile_image_url3.jpg",
+    "permanentDivision": "Khulna",
+    "age": 35,
+    "occupation": "Student"
+  },
+  {
+    "biodataId": 6,
+    "biodataType": "Female",
+    "profileImage": "female_profile_image_url3.jpg",
+    "permanentDivision": "Sylhet",
+    "age": 29,
+    "occupation": "Job"
+  }
+]
