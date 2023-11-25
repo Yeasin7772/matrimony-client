@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import useAuth from '../../hooks/useAuth';
 
@@ -50,30 +50,42 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <Link to="/" className="block py-2 text-black font-semibold hover:text-red-500">
+            <NavLink to="/" className={({ isActive, isPending }) =>
+                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+            }>
                 Home
-            </Link>
-            <Link to="/biodata" className="block py-2 text-black font-semibold hover:text-red-500">
+            </NavLink>
+            <NavLink to="/biodata" className={({ isActive, isPending }) =>
+                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+            }>
                 Biodatas
-            </Link>
-            <Link to="/about" className="block py-2 text-black font-semibold hover:text-red-500">
+            </NavLink>
+            <NavLink to="/about" className={({ isActive, isPending }) =>
+                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+            }>
                 About Us
-            </Link>
-            <Link to="/contact" className="block py-2 text-black font-semibold hover:text-red-500">
+            </NavLink>
+            <NavLink to="/contact" className={({ isActive, isPending }) =>
+                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+            }>
                 Contact
-            </Link>
-            <Link to="/login" className="block py-2 text-black font-semibold hover:text-red-500">
+            </NavLink>
+            {/* <NavLink to="/login" className={({ isActive, isPending }) =>
+                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+            }>
                 Login
-            </Link>
-            <Link to="/signUp" className="block py-2 text-black font-semibold hover:text-red-500">
+            </NavLink>
+            <NavLink to="/signUp" className={({ isActive, isPending }) =>
+                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+            }>
                 Sign Out
-            </Link>
+            </NavLink> */}
         </>
     );
 
     return (
         <Container>
-            <nav className="bg-gray-200 p-4 text-xl bg-opacity-20 text-white z-10 fixed top-0 left-0 w-full">
+            <nav className="bg-gray-600 p-4 text-2xl bg-opacity-20 text-black font-bold z-10 fixed top-0 left-0 w-full">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="font-bold text-red-500 text-xl">
                         <Link to="/" aria-label="Home">
@@ -81,7 +93,7 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    <div className="hidden md:flex space-x-4">{navLinks}</div>
+                    <div className="hidden md:flex space-x-6">{navLinks}</div>
 
                     <div className="md:hidden">
                         <button
@@ -145,27 +157,27 @@ const Navbar = () => {
                                 aria-orientation="vertical"
                                 aria-labelledby="user-menu"
                             >
-                                <div className="py-1" role="none">
+                                <div className="py-1 text-center text-xl " role="none">
                                     <Link
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        className="block px-4 uppercase py-2  text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                     >
                                         {user?.displayName}
                                     </Link>
                                     <Link
-                                        to="/settings"
-                                        className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        to="/dashboard"
+                                        className="block px-4 py-2  text-gray-700 hover:bg-gray-100"
                                         role="menuitem"
                                     >
-                                        Settings
+                                        Dashboard
                                     </Link>
-                                    <button
-                                        className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100"
+                                    <Link
+                                        className="block text-center px-4 py-2  text-red-600 hover:bg-gray-100"
                                         onClick={handelLogOut}
                                         role="menuitem"
                                     >
                                         Sign Out
-                                    </button>
+                                    </Link>
                                 </div>
                             </div>
                         )}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardHeader, CardBody, CardFooter, Typography, Button } from "@material-tailwind/react";
 import Container from "../../components/Container/Container";
+import { Link } from "react-router-dom";
 
 const PremiumMember = () => {
     const [premiumMembersData, setPremiumMembersData] = useState([]);
@@ -18,9 +19,9 @@ const PremiumMember = () => {
 
 
                 <div className="">
-                  
-                        <h1 className="text-center text-4xl font-medium my-10 "><span className="text-red-300">Premium Members</span> Looking for Partner</h1>
-                   
+
+                    <h1 className="text-center text-4xl font-medium my-10 "><span className="text-red-300">Premium Members</span> Looking for Partner</h1>
+
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                         {premiumMembersData.map((data) => (
                             <Card key={data.biodataId} className="mt-6 ">
@@ -41,7 +42,9 @@ const PremiumMember = () => {
                                     <Typography className="text-xl font-bold">{`Occupation: ${data.occupation}`}</Typography>
                                 </CardBody>
                                 <CardFooter className="pt-0">
-                                    <Button className=" bg-red-500"> View Profile</Button>
+                                    <Link to={`premiumMembers${data.biodataId}`}>
+                                        <Button className=" bg-red-500"> View Profile</Button>
+                                    </Link>
                                 </CardFooter>
                             </Card>
                         ))}
