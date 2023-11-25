@@ -7,7 +7,7 @@ const PremiumMember = () => {
     const [premiumMembersData, setPremiumMembersData] = useState([]);
 
     useEffect(() => {
-        fetch('/members.json')  // Ensure the correct path to your JSON file
+        fetch('/members.json') 
             .then(res => res.json())
             .then(data => setPremiumMembersData(data))
             .catch(error => console.error("Error fetching data:", error));
@@ -27,7 +27,7 @@ const PremiumMember = () => {
                             <Card key={data.biodataId} className="mt-6 ">
                                 <CardHeader color="blue-gray" className="relative h-80">
                                     <img
-                                        src={data.profileImage}  // Use the profile image URL from your data
+                                        src={data.profileImage}  
                                         alt={`Profile of ${data.biodataId}`}
                                         className="w-full h-full object-cover"
                                     />
