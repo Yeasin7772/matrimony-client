@@ -25,7 +25,7 @@ const PremiumMember = () => {
             <Container>
 
 
-                <div className="">
+                <div className="mb-6">
 
                     <h1 className="text-center text-4xl font-medium my-10 "><span className="text-red-300">Premium Members</span> Looking for Partner</h1>
 
@@ -43,10 +43,10 @@ const PremiumMember = () => {
                                     <Typography variant="h5" color="blue-gray" className="mb-2">
 
                                     </Typography>
-                                    <Typography className="text-xl font-bold"> {data?.name}</Typography>
-                                    <Typography className="text-xl font-bold">{`Permanent Division: ${data.division}`}</Typography>
-                                    <Typography className="text-xl font-bold">{`Age: ${data?.age}`}</Typography>
-                                    <Typography className="text-xl font-bold">{`Occupation: ${data?.occupation}`}</Typography>
+                                    <Typography className=" font-bold text-red-200 ">{`Profile ID: ${data.biodataId}`}</Typography>
+                                    <Typography className="text-xl font-bold">Name:  {data?.name}</Typography>
+                                    <Typography className="text-xl font-bold">{`Age: ${data?.age}`} Years</Typography>
+                                    
                                 </CardBody>
                                 <CardFooter className="pt-0">
                                     <Link to={`premiumProfile${data._id}`}>

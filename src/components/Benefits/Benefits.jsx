@@ -97,7 +97,7 @@ const Benefits = () => {
                                     </li>
                                 </ul>
                             </CardBody>
-                            <CardFooter className="mt-12 p-0">
+                            <CardFooter className="mt-auto  p-0">
                                 <Button
                                     size="lg"
                                     color="light-blue"
@@ -179,7 +179,7 @@ const Benefits = () => {
                                     </li>
                                 </ul>
                             </CardBody>
-                            <CardFooter className="mt-12 p-0">
+                            <CardFooter className="mt-12  p-0">
                                 <Button
                                     size="lg"
                                     color="red"
