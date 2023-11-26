@@ -6,7 +6,7 @@ import useBiodata from "../../hooks/useBiodata";
 
 const PremiumMember = () => {
     const [biodata, loading] = useBiodata();
-    console.log(biodata);
+   // console.log(biodata);
     const [premiumMembersData, setPremiumMembersData] = useState([]);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ const PremiumMember = () => {
         }
     }, [biodata, loading]);
 
-    console.log('premium Members Data', premiumMembersData);
+    //console.log('premium Members Data', premiumMembersData);
 
 
     return (
@@ -49,7 +49,7 @@ const PremiumMember = () => {
                                     
                                 </CardBody>
                                 <CardFooter className="pt-0">
-                                    <Link to={`ProfileDetails${data._id}`}>
+                                    <Link to={`/ProfileDetails/${data?._id}`}>
                                         <Button className=" bg-red-500"> View Profile</Button>
                                     </Link>
                                 </CardFooter>

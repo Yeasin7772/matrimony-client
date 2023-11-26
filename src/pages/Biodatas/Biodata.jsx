@@ -124,7 +124,7 @@ const Biodata = () => {
                                     <Typography className="text-xl font-bold">{`Division: ${item?.division} `}</Typography>
                                 </CardBody>
                                 <CardFooter className="pt-0">
-                                    <Link to={`premiumProfile${item._id}`}>
+                                    <Link to={`/ProfileDetails/${item._id}`}>
                                         <Button className="bg-red-500">View Profile</Button>
                                     </Link>
                                 </CardFooter>

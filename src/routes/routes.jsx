@@ -32,7 +32,7 @@ const routes = createBrowserRouter([
             {
                 path: '/ProfileDetails/:id',
                 element: <ProfileDetails></ProfileDetails>,
-                loader: ({params})=> fetch(`http://localhost:5000/biodatas/${params.id}`)
+                loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.id}`)
             },
             {
                 path: '/about',
