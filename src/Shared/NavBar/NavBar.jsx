@@ -2,12 +2,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import useAuth from '../../hooks/useAuth';
+import useAdmin from '../../hooks/useAdmin';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
     const userDropdownRef = useRef(null);
+
+    const { isAdmin } = useAdmin()
 
     const closeUserDropdown = () => setUserDropdownOpen(false);
 
@@ -70,17 +73,31 @@ const Navbar = () => {
             }>
                 Contact
             </NavLink>
-          
-            <NavLink to="/dashboard" className={({ isActive, isPending }) =>
+
+            {/* <NavLink to="/dashboard" className={({ isActive, isPending }) =>
                 isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
             }>
                 Dashboard
-            </NavLink>
-            {/* <NavLink to="/signUp" className={({ isActive, isPending }) =>
-                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-            }>
-                Sign Out
             </NavLink> */}
+            {
+                user && isAdmin &&
+                <NavLink to='/dashboard/adminDashboard' className={({ isActive, isPending }) =>
+                    isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+                }>
+                    Dashboard
+                </NavLink>
+
+            }
+            {
+
+                user && !isAdmin &&
+
+                <NavLink to='/dashboard/userHome' className={({ isActive, isPending }) =>
+                    isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
+                }>
+                    Dashboard
+                </NavLink>
+            }
         </>
     );
 

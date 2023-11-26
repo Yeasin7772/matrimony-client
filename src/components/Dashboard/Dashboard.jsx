@@ -1,10 +1,24 @@
 import { FaAd, FaClipboardList, FaCalendar, FaHome, FaShoppingCart, FaEnvelope, FaUtensils, FaList, FaUsers, FaBook } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
+import useAdmin from "../../hooks/useAdmin";
+import useAuth from "../../hooks/useAuth";
 
 
 const Dashboard = () => {
+    const {logOut} = useAuth()
+    const { isAdmin } = useAdmin()
+    const navigate = useNavigate()
 
-    const isAdmin = true
+    const handelLogOut = () => {
+        logOut()
+            .then(result => {
+                console.log(result.user);
+                navigate('/')
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
     return (
         <div className="flex">
@@ -25,7 +39,11 @@ const Dashboard = () => {
                                 <NavLink to='/dashboard/approvedRequest'> <FaBook /> Approved Contact Request</NavLink>
                             </li>
                             <li>
-                                <NavLink to='/Logout'> <FaUsers /> Logout</NavLink>
+                                <NavLink to='/'> <FaHome />Home</NavLink>
+                            </li>
+                            <li>
+                                <Link  onClick={handelLogOut} > Logout</Link>
+
                             </li>
 
                         </>
@@ -44,7 +62,7 @@ const Dashboard = () => {
                                     <NavLink to='/'> <FaHome />  Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to='/Logout'> <FaUsers /> Logout</NavLink>
+                                    <NavLink  onClick={handelLogOut} > <FaUsers /> Logout</NavLink>
                                 </li>
 
 
@@ -62,7 +80,7 @@ const Dashboard = () => {
                 </ul>
 
             </div>
-            <div className="flex-1 p-5">
+            <div className="flex-1 p-5 space-y-7">
                 <Outlet />
             </div>
         </div>

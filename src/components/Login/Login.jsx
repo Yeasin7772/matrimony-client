@@ -15,14 +15,14 @@ const Login = () => {
   const navigate = useNavigate()
 
   const location = useLocation()
-  console.log('use location', location);
+  //console.log('use location', location);
 
 
 
-  const handelGoogle = () => {
-    googleLogin()
-    navigate(location?.state ? location.state : '/')
-  }
+  // const handelGoogle = () => {
+  //   googleLogin()
+  //   navigate(location?.state ? location.state : '/')
+  // }
 
 
   const handleLogin = (e) => {

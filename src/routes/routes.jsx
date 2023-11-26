@@ -13,6 +13,7 @@ import AdminDashBoard from '../components/Dashboard/AdminHome/AdminDashBoard';
 import ManageUsers from '../components/Dashboard/AdminHome/ManageUsers';
 import ApprovedRequest from '../components/Dashboard/AdminHome/ApprovedRequest';
 import ApprovedPremium from '../components/Dashboard/AdminHome/ApprovedPremium';
+import UserHome from '../components/Dashboard/AdminHome/UserHome/UserHome';
 
 
 
@@ -60,6 +61,14 @@ const routes = createBrowserRouter([
         path:'/dashboard',
         element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children:[
+
+            // user routes 
+
+            {
+                path:'userHome',
+                element:<UserHome/>
+
+            },
             /// admin routes
             {
                 path:'adminDashboard',
