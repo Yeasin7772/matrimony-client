@@ -70,12 +70,13 @@ const Navbar = () => {
             }>
                 Contact
             </NavLink>
-            {/* <NavLink to="/login" className={({ isActive, isPending }) =>
+          
+            <NavLink to="/dashboard" className={({ isActive, isPending }) =>
                 isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
             }>
-                Login
+                Dashboard
             </NavLink>
-            <NavLink to="/signUp" className={({ isActive, isPending }) =>
+            {/* <NavLink to="/signUp" className={({ isActive, isPending }) =>
                 isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
             }>
                 Sign Out
@@ -164,13 +165,7 @@ const Navbar = () => {
                                     >
                                         {user?.displayName}
                                     </Link>
-                                    <Link
-                                        to="/dashboard"
-                                        className="block px-4 py-2  text-gray-700 hover:bg-gray-100"
-                                        role="menuitem"
-                                    >
-                                        Dashboard
-                                    </Link>
+
                                     <Link
                                         className="block text-center px-4 py-2  text-red-600 hover:bg-gray-100"
                                         onClick={handelLogOut}

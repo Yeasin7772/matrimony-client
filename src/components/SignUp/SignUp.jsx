@@ -1,29 +1,27 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { FcGoogle } from 'react-icons/fc'
 import { useState } from "react";
 import useAuth from '../../hooks/useAuth'
 import Swal from 'sweetalert2';
 import Container from '../Container/Container';
 import LoginImg from '../../assets/login.jpg'
+import useAxiosSecure from '../../hooks/useAxiosSecure';
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const SignUp = () => {
-
+    const axiosSecure = useAxiosSecure()
     const [registerError, setRegisterError] = useState('')
     const [registerSuccess, setRegisterSuccess] = useState('')
     const nevigate = useNavigate()
 
 
-    const { createUser, handleProfile, googleLogin } = useAuth()
+    const { createUser, handleProfile, } = useAuth()
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [photo, setPhoto] = useState('')
 
     console.log(name, email, password, photo);
-    const handelGoogle = () => {
-        googleLogin()
-        navigate(location?.state ? location.state : '/')
-    }
+   
 
     const handelRegister = (e) => {
         e.preventDefault()
@@ -68,15 +66,29 @@ const SignUp = () => {
             .then(result => {
                 console.log(result.user);
                 handleProfile(name, photo)
-                setRegisterSuccess('user created successFully')
-                nevigate('/')
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'user created successFully',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+
+
+                const userInfo = {
+                    name: name,
+                    email: email
+                }
+                axiosSecure.post('/users', userInfo)
+                    .then(res => {
+                        if (res.data.insertedId) {
+                            console.log('user added');
+                        
+                            setRegisterSuccess('user created successFully')
+                            nevigate('/')
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'user created successFully',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                    })
+
 
             })
             .catch(error => {
@@ -143,7 +155,7 @@ const SignUp = () => {
                                             Password
                                         </label>
                                     </div>
-                                    <input  onBlur={(e) => setPassword(e.target.value)}
+                                    <input onBlur={(e) => setPassword(e.target.value)}
                                         type='password'
                                         name='password'
                                         autoComplete='new-password'
@@ -170,13 +182,14 @@ const SignUp = () => {
                             <div className='flex-1 h-px w-16 sm:w-16 dark:bg-gray-700'></div>
                         </div>
 
-                        <div
+                        {/* <div
                             onClick={handelGoogle}
                             className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer'
                         >
                             <FcGoogle size={32} />
                             <p>Sign up with Google</p>
-                        </div>
+                        </div> */}
+                        <SocialLogin></SocialLogin>
 
                         <p className='px-6 text-sm text-center text-gray-400'>
                             Already have an account?{' '}

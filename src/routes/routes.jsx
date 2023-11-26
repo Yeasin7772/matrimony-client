@@ -6,6 +6,13 @@ import Login from '../components/Login/Login';
 import SignUp from '../components/SignUp/SignUp';
 import Biodata from '../pages/Biodatas/Biodata';
 import Contact from '../pages/Contact/Contact';
+import ProfileDetails from '../pages/PremiumMember/ProfileDetails';
+import Dashboard from '../components/Dashboard/Dashboard';
+import PrivateRoute from '../routes/PrivateRoute'
+import AdminDashBoard from '../components/Dashboard/AdminHome/AdminDashBoard';
+import ManageUsers from '../components/Dashboard/AdminHome/ManageUsers';
+import ApprovedRequest from '../components/Dashboard/AdminHome/ApprovedRequest';
+import ApprovedPremium from '../components/Dashboard/AdminHome/ApprovedPremium';
 
 
 
@@ -21,6 +28,11 @@ const routes = createBrowserRouter([
                 // loader: ()=> fetch('http://localhost:5000/boidatas')
             },
            
+            {
+                path: '/ProfileDetails/:id',
+                element: <ProfileDetails></ProfileDetails>,
+                loader: ({params})=> fetch(`http://localhost:5000/biodatas/${params.id}`)
+            },
             {
                 path: '/about',
                 element: <h3>This is about page</h3>
@@ -41,6 +53,31 @@ const routes = createBrowserRouter([
                 path: '/biodata',
                 element: <Biodata/>
             },
+        ]
+
+    },
+    {
+        path:'/dashboard',
+        element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children:[
+            /// admin routes
+            {
+                path:'adminDashboard',
+                element: <AdminDashBoard/>
+            },
+            {
+                path:'manageUsers',
+                element: <ManageUsers/>
+            },
+            {
+                path:'approvedPremium',
+                element: <ApprovedPremium/>
+            },
+            {
+                path:'approvedRequest',
+                element: <ApprovedRequest/>
+            },
+           
         ]
     }
 ])

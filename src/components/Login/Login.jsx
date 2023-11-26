@@ -5,6 +5,7 @@ import Swal from 'sweetalert2';
 import useAuth from '../../hooks/useAuth';
 import Container from '../Container/Container';
 import LoginImg from '../../assets/login.jpg'
+import SocialLogin from '../SocialLogin/SocialLogin';
 
 const Login = () => {
 
@@ -124,13 +125,14 @@ const Login = () => {
                 <div className='flex-1 h-px w-16 sm:w-16 dark:bg-gray-700'></div>
               </div>
 
-              <div
+              {/* <div
                 onClick={handelGoogle}
                 className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 rounded cursor-pointer'
               >
                 <FcGoogle size={32} />
                 <p>Login with Google</p>
-              </div>
+              </div> */}
+              <SocialLogin></SocialLogin>
 
               <p className='px-6 text-sm text-center text-gray-400'>
                 Don&apos;t have an account yet?{' '}

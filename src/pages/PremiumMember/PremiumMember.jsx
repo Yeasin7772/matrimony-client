@@ -49,7 +49,7 @@ const PremiumMember = () => {
                                     
                                 </CardBody>
                                 <CardFooter className="pt-0">
-                                    <Link to={`premiumProfile${data._id}`}>
+                                    <Link to={`ProfileDetails${data._id}`}>
                                         <Button className=" bg-red-500"> View Profile</Button>
                                     </Link>
                                 </CardFooter>
