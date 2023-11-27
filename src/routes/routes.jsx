@@ -15,6 +15,7 @@ import ApprovedRequest from '../components/Dashboard/AdminHome/ApprovedRequest';
 import ApprovedPremium from '../components/Dashboard/AdminHome/ApprovedPremium';
 import UserHome from '../components/Dashboard/AdminHome/UserHome/UserHome';
 import UserFavorites from '../components/Dashboard/AdminHome/UserHome/UserFavorites';
+import EditBiodata from '../components/Dashboard/AdminHome/UserHome/EditBiodata';
 
 
 
@@ -73,6 +74,11 @@ const routes = createBrowserRouter([
             {
                 path:'userFavorites',
                 element:<UserFavorites/>
+
+            },
+            {
+                path:'editBiodata',
+                element:<EditBiodata/>
 
             },
             /// admin routes
