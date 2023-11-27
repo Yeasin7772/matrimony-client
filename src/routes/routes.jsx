@@ -14,6 +14,7 @@ import ManageUsers from '../components/Dashboard/AdminHome/ManageUsers';
 import ApprovedRequest from '../components/Dashboard/AdminHome/ApprovedRequest';
 import ApprovedPremium from '../components/Dashboard/AdminHome/ApprovedPremium';
 import UserHome from '../components/Dashboard/AdminHome/UserHome/UserHome';
+import UserFavorites from '../components/Dashboard/AdminHome/UserHome/UserFavorites';
 
 
 
@@ -67,6 +68,11 @@ const routes = createBrowserRouter([
             {
                 path:'userHome',
                 element:<UserHome/>
+
+            },
+            {
+                path:'userFavorites',
+                element:<UserFavorites/>
 
             },
             /// admin routes

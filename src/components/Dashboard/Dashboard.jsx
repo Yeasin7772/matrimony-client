@@ -54,6 +54,26 @@ const Dashboard = () => {
                                         <FaHome></FaHome>
                                         User Dashboard</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/dashboard/userDashboard">
+                                        <FaHome></FaHome>
+                                        Edit Biodata</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/userDashboard">
+                                        <FaHome></FaHome>
+                                        View Biodata</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/userDashboard">
+                                        <FaHome></FaHome>
+                                        My Contact Request</NavLink>
+                                </li>
+                                <li>
+                                    <NavLink to="/dashboard/userFavorites">
+                                        <FaHome></FaHome>
+                                        Favorites Biodata</NavLink>
+                                </li>
 
 
 
