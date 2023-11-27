@@ -31,7 +31,7 @@ const routes = createBrowserRouter([
            
             {
                 path: '/ProfileDetails/:id',
-                element: <ProfileDetails></ProfileDetails>,
+                element: <PrivateRoute><ProfileDetails></ProfileDetails></PrivateRoute>,
                 loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.id}`)
             },
             {

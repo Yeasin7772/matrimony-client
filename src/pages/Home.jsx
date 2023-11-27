@@ -1,6 +1,7 @@
 // import { useLoaderData } from "react-router-dom";
 import NavBar from "../Shared/NavBar/NavBar";
 import Benefits from "../components/Benefits/Benefits";
+import SuccessCounter from "../components/home/SuccessCounter/SuccessCounter";
 import SuccessStory from "../components/home/SuccessStory/SuccessStory";
 import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
@@ -15,6 +16,7 @@ const Home = () => {
             {/* <NavBar/> */}
             <Header />
             <PremiumMember />
+            <SuccessCounter/>
             <SuccessStory/>
             <Benefits />
             <Footer />

@@ -32,9 +32,9 @@ const ProfileDetails = () => {
 
     return (
         <Container>
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            <div className=" h-screen grid grid-cols-2 lg:grid-cols-12 gap-4">
                 <div className="col-span-4 flex justify-center items-center overflow-y-scroll ">
-                    <div className="grid grid-cols-1 gap-5">
+                    <div className="grid grid-cols-1 gap-5 mt-48">
                        {
                         filterData?.map(item => <GenderProfile key={item._id} item={item}/>)
                        }
@@ -42,7 +42,7 @@ const ProfileDetails = () => {
                 </div>
 
                 {/* details data  */}
-                <div className="col-span-8  flex justify-center items-center">
+                <div className="col-span-8  flex justify-center items-center ">
                     <Card className=" overflow-hidden">
                         <CardHeader
                             floated={false}

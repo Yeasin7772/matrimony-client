@@ -24,10 +24,11 @@ const SuccessStory = () => {
         <>
             <Container>
                 <div className='text-center my-10'>
-                    <h2 className="text-3xl"> choice for finding your life partner</h2>
+                    <h1 className='text-4xl font-medium my-4 '>our success story</h1>
+                    <h2 className="text-xl"> choice for finding your life partner</h2>
                 </div>
                 <Swiper
-                    spaceBetween={40}
+                    spaceBetween={50}
                     centeredSlides={true}
                     autoplay={{
                         delay: 2500,
