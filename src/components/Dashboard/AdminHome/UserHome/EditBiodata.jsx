@@ -27,7 +27,7 @@ const EditBiodata = () => {
         const weight = form.weight.value;
         const partner_weight = form.partner_weight.value;
         const email = user?.email; 
-        const Occupation = form.Occupation.value;
+        const occupation = form.Occupation.value;
         const number = form.number.value;
         const age = form.your_age.value;
         const partner_age = form.partner_age.value;
@@ -48,7 +48,7 @@ const EditBiodata = () => {
              partner_height,
             partner_weight,
             weight,
-            Occupation,
+            occupation,
             age,
             partner_age,
             number

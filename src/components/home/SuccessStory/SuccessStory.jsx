@@ -1,7 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-
+import { Rating } from "@material-tailwind/react";
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -18,8 +18,19 @@ import {
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Container from '../../Container/Container';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const SuccessStory = () => {
+    const [success, setSuccess] = useState()
+    const axiosPublic = useAxiosPublic()
+    useEffect(() => {
+        axiosPublic.get('/success')
+            .then(res => {
+                setSuccess(res.data)
+            })
+    }, [])
+    console.log(success);
+
     return (
         <>
             <Container>
@@ -42,223 +53,62 @@ const SuccessStory = () => {
                     className="mySwiper"
                     style={{ height: '400px' }}
                 >
-                    <SwiperSlide>
-                        <Card className="w-full flex-col  md:flex-row">
-                            <CardHeader
-                                shadow={false}
-                                floated={false}
-                                className="m-0 w-full rounded-r-none"
-                            >
-                                <img
-                                    src="https://i.ibb.co/N9TtJRw/pexels-look-me-photography-19118295.jpg"
-                                    alt="card-image"
-                                    className="h-full w-full object-cover"
-                                />
-                            </CardHeader>
-                            <CardBody className="w-full">
-                                <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                    Success Story
-                                </Typography>
-                                <Typography variant="h4" color="blue-gray" className="mb-2">
-                                    Sujan proposed to Maida after meeting her through Bangladeshi Matrimony
-                                </Typography>
-                                <Typography color="gray" className="mb-8 font-normal">
-                                    Like so many organizations these days, Autodesk is a company in transition. It was until
-                                    recently a traditional boxed software company selling licenses. Yet its own business
-                                    model disruption is only part of the story
-                                </Typography>
-                                <a href="#" className="inline-block">
-                                    <Button variant="text" className="flex items-center gap-2">
-                                        Read More
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                            className="h-4 w-4"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </Button>
-                                </a>
-                            </CardBody>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Card className="w-full flex-col  md:flex-row">
-                            <CardHeader
-                                shadow={false}
-                                floated={false}
-                                className="m-0 w-full rounded-r-none"
-                            >
-                                <img
-                                    src="https://i.ibb.co/ZXh0QrP/pexels-helena-lopes-1378849.jpg"
-                                    alt="card-image"
-                                    className="h-full w-full object-cover"
-                                />
-                            </CardHeader>
-                            <CardBody className="w-full">
-                                <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                    Success Story
-                                </Typography>
-                                <Typography variant="h4" color="blue-gray" className="mb-2">
-                                    Sujan proposed to Maida after meeting her through Bangladeshi Matrimony
-                                </Typography>
-                                <Typography color="gray" className="mb-8 font-normal">
-                                    Like so many organizations these days, Autodesk is a company in transition. It was until
-                                    recently a traditional boxed software company selling licenses. Yet its own business
-                                    model disruption is only part of the story
-                                </Typography>
-                                <a href="#" className="inline-block">
-                                    <Button variant="text" className="flex items-center gap-2">
-                                        Read More
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                            className="h-4 w-4"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </Button>
-                                </a>
-                            </CardBody>
-                        </Card>
-                    </SwiperSlide>
+                    {
+                        success?.map(item => <SwiperSlide key={item._id}>
+                            <Card key={item._id} className="w-full flex-col md:flex-row">
+                                <CardHeader
+                                    shadow={false}
+                                    floated={false}
+                                    className="m-0 w-full rounded-r-none"
+                                >
+                                    <img
+                                        src={item.couple_image}
+                                        alt="card-image"
+                                        className="h-full w-full object-cover"
+                                    />
+                                </CardHeader>
+                                <CardBody className="w-full">
+                                    <Typography variant="h6" color="gray" className="mb-4 uppercase">
+                                        Success Story
+                                    </Typography>
+                                    <Typography variant="h4" color="blue-gray" className="mb-2">
+                                        {item.success_text}
+                                    </Typography>
+                                    <Typography color="gray" className="mb-8 font-normal">
+                                        {item.success_text.substring(0, 200)}...
+                                    </Typography>
+                                    <Typography >
+                                    <Rating value={5} />
+                                    </Typography>
+                                    
+                                    
+                                  
+                                   
+                                    <a href="#" className="inline-block">
+                                        <Button variant="text" className="flex items-center gap-2">
+                                            Read More
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                                strokeWidth={2}
+                                                className="h-4 w-4"
+                                            >
+                                                <path
+                                                    strokeLinecap="round"
+                                                    strokeLinejoin="round"
+                                                    d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
+                                                />
+                                            </svg>
+                                        </Button>
+                                    </a>
+                                </CardBody>
+                            </Card>
+                        </SwiperSlide>)
+                    }
 
-                    <SwiperSlide>
-                        <Card className="w-full flex-col  md:flex-row">
-                            <CardHeader
-                                shadow={false}
-                                floated={false}
-                                className="m-0 w-full rounded-r-none"
-                            >
-                                <img
-                                    src="https://i.ibb.co/sJpyZvw/pexels-andre-furtado-1417255.jpg"
-                                    alt="card-image"
-                                    className="h-full w-full object-cover"
-                                />
-                            </CardHeader>
-                            <CardBody className="w-full">
-                                <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                    Success Story
-                                </Typography>
-                                <Typography variant="h4" color="blue-gray" className="mb-2">
-                                    Sujan proposed to Maida after meeting her through Bangladeshi Matrimony
-                                </Typography>
-                                <Typography color="gray" className="mb-8 font-normal">
-                                    Like so many organizations these days, Autodesk is a company in transition. It was until
-                                    recently a traditional boxed software company selling licenses. Yet its own business
-                                    model disruption is only part of the story
-                                </Typography>
-                                <a href="#" className="inline-block">
-                                    <Button variant="text" className="flex items-center gap-2">
-                                        Read More
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                            className="h-4 w-4"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </Button>
-                                </a>
-                            </CardBody>
-                        </Card>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Card className="w-full flex-col  md:flex-row">
-                            <CardHeader
-                                shadow={false}
-                                floated={false}
-                                className="m-0 w-full rounded-r-none"
-                            >
-                                <img
-                                    src="https://i.ibb.co/zfXRQ5p/pexels-look-me-photography-19118310.jpg"
-                                    alt="card-image"
-                                    className="h-full w-full object-cover"
-                                />
-                            </CardHeader>
-                            <CardBody className="w-full">
-                                <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                    Success Story
-                                </Typography>
-                                <Typography variant="h4" color="blue-gray" className="mb-2">
-                                    Sujan proposed to Maida after meeting her through Bangladeshi Matrimony
-                                </Typography>
-                                <Typography color="gray" className="mb-8 font-normal">
-                                    Like so many organizations these days, Autodesk is a company in transition. It was until
-                                    recently a traditional boxed software company selling licenses. Yet its own business
-                                    model disruption is only part of the story
-                                </Typography>
-                                <a href="#" className="inline-block">
-                                    <Button variant="text" className="flex items-center gap-2">
-                                        Read More
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                            className="h-4 w-4"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </Button>
-                                </a>
-                            </CardBody>
-                        </Card>
 
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <Card className="w-full flex-col  md:flex-row">
-                            <CardHeader
-                                shadow={false}
-                                floated={false}
-                                className="m-0 w-full rounded-r-none"
-                            >
-                                <img
-                                    src="https://i.ibb.co/ZXh0QrP/pexels-helena-lopes-1378849.jpg"
-                                    alt="card-image"
-                                    className="h-full w-full object-cover"
-                                />
-                            </CardHeader>
-                            <CardBody className="w-full">
-                                <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                    Success Story
-                                </Typography>
-                                <Typography variant="h4" color="blue-gray" className="mb-2">
-                                    Sujan proposed to Maida after meeting her through Bangladeshi Matrimony
-                                </Typography>
-                                <Typography color="gray" className="mb-8 font-normal">
-                                    Like so many organizations these days, Autodesk is a company in transition. It was until
-                                    recently a traditional boxed software company selling licenses. Yet its own business
-                                    model disruption is only part of the story
-                                </Typography>
-                                <a href="#" className="inline-block">
-                                    <Button variant="text" className="flex items-center gap-2">
-                                        Read More
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                            strokeWidth={2}
-                                            className="h-4 w-4"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3" />
-                                        </svg>
-                                    </Button>
-                                </a>
-                            </CardBody>
-                        </Card>
-                    </SwiperSlide>
 
 
 

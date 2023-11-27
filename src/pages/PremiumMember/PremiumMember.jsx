@@ -44,8 +44,8 @@ const PremiumMember = () => {
 
                                     </Typography>
                                     <Typography className=" font-bold text-red-200 ">{`Profile ID: ${data.biodataId}`}</Typography>
-                                    <Typography className="text-xl font-bold">Name:  {data?.name}</Typography>
-                                    <Typography className="text-xl font-bold">{`Age: ${data?.age}`} Years</Typography>
+                                   
+                                    <Typography className="text-red-200 font-bold">{` ${data?.age}`} Years</Typography>
                                     
                                 </CardBody>
                                 <CardFooter className="pt-0">

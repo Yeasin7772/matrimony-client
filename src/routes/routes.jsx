@@ -16,6 +16,7 @@ import ApprovedPremium from '../components/Dashboard/AdminHome/ApprovedPremium';
 import UserHome from '../components/Dashboard/AdminHome/UserHome/UserHome';
 import UserFavorites from '../components/Dashboard/AdminHome/UserHome/UserFavorites';
 import EditBiodata from '../components/Dashboard/AdminHome/UserHome/EditBiodata';
+import ViewBioData from '../components/Dashboard/AdminHome/UserHome/ViewBioData';
 
 
 
@@ -79,6 +80,12 @@ const routes = createBrowserRouter([
             {
                 path:'editBiodata',
                 element:<EditBiodata/>
+
+            },
+            {
+                path:'viewbiodata',
+                element:<ViewBioData/>,
+                // loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.email}`)
 
             },
             /// admin routes

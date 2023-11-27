@@ -1,4 +1,4 @@
-import {  useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import {
     Card,
     CardHeader,
@@ -21,7 +21,7 @@ const ProfileDetails = () => {
     const axiosPublic = useAxiosPublic()
     const { user } = useAuth()
 
-
+    const isPremium = true
 
     useEffect(() => {
         axiosPublic.get('/boidatas')
@@ -33,14 +33,13 @@ const ProfileDetails = () => {
             })
 
     }, [])
-    // console.log(filterData);
+     console.log(filterData);
 
     const handelAddToFavorite = (data) => {
         // console.log(data, user.email);
 
         if (user && user.email) {
-            // send cart item to the database
-            //  console.log(user.email, food);
+           
             const favoritesItem = {
                 biodataId: data.biodataId,
                 profileImage: data.profileImage,
@@ -117,10 +116,20 @@ const ProfileDetails = () => {
                             <Typography variant="lead" color="gray" className="mt-3 font-normal">
                                 About Info :    {data?.description}
                             </Typography>
+                            {
+                                isPremium ? <>
+                                    <Typography variant="lead" color="gray" className="mt-3 font-normal">
+                                        contact Info :    {data?.number}
+                                    </Typography>
+                                    <Typography variant="lead" color="gray" className="mt-3 font-normal">
+                                        contact Info :    {data?.email}
+                                    </Typography>
+                                </> : <Button className="bg-blue-600 text-black">Add Request Contact</Button>
+                            }
                         </CardBody>
                         <CardFooter className="pt-0">
-                           
-                            <Button  onClick={() => handelAddToFavorite(data)} className="bg-yellow-400 text-black">ADD favorite</Button>
+
+                            <Button onClick={() => handelAddToFavorite(data)} className="bg-yellow-400 text-black">ADD favorite</Button>
 
                         </CardFooter>
                     </Card>
