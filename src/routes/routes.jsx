@@ -17,6 +17,8 @@ import UserHome from '../components/Dashboard/AdminHome/UserHome/UserHome';
 import UserFavorites from '../components/Dashboard/AdminHome/UserHome/UserFavorites';
 import EditBiodata from '../components/Dashboard/AdminHome/UserHome/EditBiodata';
 import ViewBioData from '../components/Dashboard/AdminHome/UserHome/ViewBioData';
+import MyContactRequest from '../components/Dashboard/AdminHome/UserHome/MyContactRequest';
+import CheckoutPage from '../components/CheckoutPage/CheckoutPage';
 
 
 
@@ -57,6 +59,12 @@ const routes = createBrowserRouter([
                 path: '/biodata',
                 element: <Biodata/>
             },
+            {
+                path: `/checkoutPage`,
+                element: <CheckoutPage/>,
+                // loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.biodataId}`)
+
+            },
         ]
 
     },
@@ -86,6 +94,12 @@ const routes = createBrowserRouter([
                 path:'viewbiodata',
                 element:<ViewBioData/>,
                 // loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.email}`)
+
+            },
+            {
+                path:'userRequest',
+                element:<MyContactRequest/>,
+              
 
             },
             /// admin routes

@@ -27,7 +27,7 @@ const AdminDashBoard = () => {
         <div className="flex flex-col md:flex-row justify-center gap-6 uppercase"> 
             <div className="bg-white p-4 rounded-md shadow-md w-full">
                 <div className="text-lg font-semibold ">Total biodata</div>
-                <div className="text-3xl font-bold text-gray-800">{totalData.length}</div>
+                <div className="text-3xl font-bold text-gray-800">{totalData?.length}</div>
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="text-red-500 w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </div>
             <div className="bg-white p-4 rounded-md shadow-md w-full">

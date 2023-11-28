@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import {
     Card,
     CardHeader,
@@ -89,7 +89,7 @@ const ProfileDetails = () => {
                 name: data.name,
                 division: data.division,
                 occupation: data.occupation,
-                number:data?.number
+                number: data?.number
             }
 
             console.table(AddRequestData);
@@ -137,7 +137,7 @@ const ProfileDetails = () => {
                             floated={false}
                             shadow={false}
                             color="transparent"
-                            className=" w-full  object-cover "
+                            className=" w-full h-96 object-cover "
                         >
                             <img
                                 src={data?.profileImage}
@@ -172,6 +172,9 @@ const ProfileDetails = () => {
                             }
                         </CardBody>
                         <CardFooter className="pt-0">
+                            <Link to='/checkoutPage'>
+                                <Button className="bg-blue-800 text-black">ADD checkOut</Button>
+                            </Link>
 
                             <Button onClick={() => handelAddToFavorite(data)} className="bg-yellow-400 text-black">ADD favorite</Button>
 
