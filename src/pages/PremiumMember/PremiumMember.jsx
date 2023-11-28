@@ -36,7 +36,7 @@ const PremiumMember = () => {
                                     <img
                                         src={data.profileImage}
                                         alt={`Profile of ${data.biodataId}`}
-                                        className="w-full  object-cover"
+                                        className="w-full h-full  "
                                     />
                                 </CardHeader>
                                 <CardBody>

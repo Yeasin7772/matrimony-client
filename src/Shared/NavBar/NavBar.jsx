@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import useAuth from '../../hooks/useAuth';
 import useAdmin from '../../hooks/useAdmin';
+import logo from '../../assets/logo.png'
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -107,7 +108,7 @@ const Navbar = () => {
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="font-bold text-red-500 text-xl">
                         <Link to="/" aria-label="Home">
-                            Your Logo
+                           <img className='w-60' src={logo} alt="" />
                         </Link>
                     </div>
 

@@ -69,7 +69,7 @@ const SuccessStory = () => {
                                 </CardHeader>
                                 <CardBody className="w-full">
                                     <Typography variant="h6" color="gray" className="mb-4 uppercase">
-                                        Success Story
+                                    Marriage Date :  { item?.marriage_date}
                                     </Typography>
                                     <Typography variant="h4" color="blue-gray" className="mb-2">
                                         {item.success_text}

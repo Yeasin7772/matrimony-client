@@ -21,7 +21,7 @@ const ProfileDetails = () => {
     const axiosPublic = useAxiosPublic()
     const { user } = useAuth()
 
-    const isPremium = true
+    const isPremium = false
 
     useEffect(() => {
         axiosPublic.get('/boidatas')
@@ -33,13 +33,13 @@ const ProfileDetails = () => {
             })
 
     }, [])
-     console.log(filterData);
+    console.log(filterData);
 
     const handelAddToFavorite = (data) => {
         // console.log(data, user.email);
 
         if (user && user.email) {
-           
+
             const favoritesItem = {
                 biodataId: data.biodataId,
                 profileImage: data.profileImage,
@@ -72,6 +72,50 @@ const ProfileDetails = () => {
                 });
 
         }
+
+    }
+
+
+    const handelAddToRequest = (data) => {
+        console.log(data);
+
+        if (user && user.email) {
+
+            const AddRequestData = {
+                biodataId: data.biodataId,
+                profileImage: data.profileImage,
+                age: data.age,
+                email: user.email,
+                name: data.name,
+                division: data.division,
+                occupation: data.occupation,
+                number:data?.number
+            }
+
+            console.table(AddRequestData);
+
+
+            axiosPublic.post('/request', AddRequestData)
+                .then(res => {
+                    console.log(res.data);
+                    if (res.data.insertedId) {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: `Added your Request`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+
+                    }
+                })
+                .catch(error => {
+                    console.error("Error  post request:", error);
+                });
+
+        }
+
+
 
     }
 
@@ -124,7 +168,7 @@ const ProfileDetails = () => {
                                     <Typography variant="lead" color="gray" className="mt-3 font-normal">
                                         contact Info :    {data?.email}
                                     </Typography>
-                                </> : <Button className="bg-blue-600 text-black">Add Request Contact</Button>
+                                </> : <Button onClick={() => handelAddToRequest(data)} className="bg-blue-600 text-black">Add Request Contact</Button>
                             }
                         </CardBody>
                         <CardFooter className="pt-0">

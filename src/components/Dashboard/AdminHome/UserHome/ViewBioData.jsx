@@ -1,7 +1,7 @@
 import useAuth from "../../../../hooks/useAuth";
 import { useState, useEffect } from 'react'
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-
+import { Button, Card, Typography,CardHeader ,CardBody} from "@material-tailwind/react";
 
 const ViewBioData = () => {
     const { user } = useAuth()
