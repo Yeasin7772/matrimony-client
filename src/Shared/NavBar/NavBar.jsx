@@ -176,7 +176,7 @@ const Navbar = () => {
                                 aria-orientation="vertical"
                                 aria-labelledby="user-menu"
                             >
-                                <div className="py-1 text-center text-xl " role="none">
+                                <div className="py-1 text-center text-sm " role="none">
                                     <Link
                                         className="block px-4 uppercase py-2  text-gray-700 hover:bg-gray-100"
                                         role="menuitem"

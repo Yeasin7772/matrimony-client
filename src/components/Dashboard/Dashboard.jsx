@@ -39,6 +39,9 @@ const Dashboard = () => {
                                 <NavLink to='/dashboard/approvedRequest'> <FaBook /> Approved Contact Request</NavLink>
                             </li>
                             <li>
+                                <NavLink to='/dashboard/allSuccessStory'> <FaBook /> Success Story</NavLink>
+                            </li>
+                            <li>
                                 <NavLink to='/'> <FaHome />Home</NavLink>
                             </li>
                             <li>

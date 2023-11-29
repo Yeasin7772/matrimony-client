@@ -36,6 +36,22 @@ const ManageUsers = () => {
                 }
             })
     }
+    const handelMakePremium = (id) => {
+        axiosSecure.patch(`/users/premium/${id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `  premium now!`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
     return (
         <div>
             <h1 className="text-2xl"> Total Users: {users.length}</h1>
@@ -84,7 +100,12 @@ const ManageUsers = () => {
                                     }
                                 </td>
                                 <td className="p-4">
-                                   make p
+                                {
+                                        role === 'premium' ? <span className="text-xl text-orange-500">premium</span> :
+                                            <button onClick={() => handelMakePremium(_id)}
+                                                className="btn  ">
+                                              Make premium</button>
+                                    }
                                 </td>
                             </tr>
                         ))}

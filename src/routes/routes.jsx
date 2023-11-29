@@ -20,6 +20,7 @@ import ViewBioData from '../components/Dashboard/AdminHome/UserHome/ViewBioData'
 import MyContactRequest from '../components/Dashboard/AdminHome/UserHome/MyContactRequest';
 import CheckoutPage from '../components/CheckoutPage/CheckoutPage';
 import GotMarried from '../components/Dashboard/AdminHome/UserHome/GotMarried';
+import AllSuccessStory from '../components/Dashboard/AdminHome/AllSuccessStory';
 
 
 
@@ -125,6 +126,10 @@ const routes = createBrowserRouter([
             {
                 path:'approvedRequest',
                 element: <ApprovedRequest/>
+            },
+            {
+                path:'allSuccessStory',
+                element: <AllSuccessStory/>
             },
            
         ]

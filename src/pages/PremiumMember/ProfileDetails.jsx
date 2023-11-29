@@ -14,14 +14,29 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import GenderProfile from "./GenderProfile.jsx/GenderProfile";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ProfileDetails = () => {
     const data = useLoaderData()
     const [filterData, setFilterData] = useState()
     const axiosPublic = useAxiosPublic()
     const { user } = useAuth()
+    const axiosSecure = useAxiosSecure()
 
-    const isPremium = false
+    const isPremium = true
+
+    const { data: users = [], refetch } = useQuery({
+        queryKey: ["users"],
+        queryFn: async () => {
+            try {
+                const res = await axiosSecure.get('/users',);
+                return res.data;
+            } catch (error) {
+                throw new Error("Error fetching user data: " + error.message);
+            }
+        }
+    });
 
     useEffect(() => {
         axiosPublic.get('/boidatas')
@@ -76,48 +91,48 @@ const ProfileDetails = () => {
     }
 
 
-    const handelAddToRequest = (data) => {
-        console.log(data);
+    // const handelAddToRequest = (data) => {
+    //     console.log(data);
 
-        if (user && user.email) {
+    //     if (user && user.email) {
 
-            const AddRequestData = {
-                biodataId: data.biodataId,
-                profileImage: data.profileImage,
-                age: data.age,
-                email: user.email,
-                name: data.name,
-                division: data.division,
-                occupation: data.occupation,
-                number: data?.number
-            }
+    //         const AddRequestData = {
+    //             biodataId: data.biodataId,
+    //             profileImage: data.profileImage,
+    //             age: data.age,
+    //             email: user.email,
+    //             name: data.name,
+    //             division: data.division,
+    //             occupation: data.occupation,
+    //             number: data?.number
+    //         }
 
-            console.table(AddRequestData);
-
-
-            axiosPublic.post('/request', AddRequestData)
-                .then(res => {
-                    console.log(res.data);
-                    if (res.data.insertedId) {
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: `Added your Request`,
-                            showConfirmButton: false,
-                            timer: 1500
-                        });
-
-                    }
-                })
-                .catch(error => {
-                    console.error("Error  post request:", error);
-                });
-
-        }
+    //         console.table(AddRequestData);
 
 
+    //         axiosPublic.post('/request', AddRequestData)
+    //             .then(res => {
+    //                 console.log(res.data);
+    //                 if (res.data.insertedId) {
+    //                     Swal.fire({
+    //                         position: "top-end",
+    //                         icon: "success",
+    //                         title: `Added your Request`,
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                     });
 
-    }
+    //                 }
+    //             })
+    //             .catch(error => {
+    //                 console.error("Error  post request:", error);
+    //             });
+
+    //     }
+
+
+
+    // }
 
     return (
         <Container>
@@ -163,7 +178,7 @@ const ProfileDetails = () => {
                             {
                                 isPremium ? <>
                                     <Typography variant="lead" color="gray" className="mt-3 font-normal">
-                                        contact Info :    {data?.number}
+                                        contact Info :    {data?.phoneNumber}
                                     </Typography>
                                     <Typography variant="lead" color="gray" className="mt-3 font-normal">
                                         contact Info :    {data?.email}
