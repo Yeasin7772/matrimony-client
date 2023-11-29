@@ -33,13 +33,13 @@ const routes = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                // loader: ()=> fetch('http://localhost:5000/boidatas')
+                // loader: ()=> fetch('https://matrimony-server-beige.vercel.app/boidatas')
             },
            
             {
                 path: '/ProfileDetails/:id',
                 element: <PrivateRoute><ProfileDetails></ProfileDetails></PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.id}`)
+                loader: ({params})=> fetch(`https://matrimony-server-beige.vercel.app/boidatas/${params.id}`)
             },
             {
                 path: '/about',
@@ -64,7 +64,7 @@ const routes = createBrowserRouter([
             {
                 path: `/checkoutPage`,
                 element: <CheckoutPage/>,
-                // loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.biodataId}`)
+                // loader: ({params})=> fetch(`https://matrimony-server-beige.vercel.app/boidatas/${params.biodataId}`)
 
             },
         ]
@@ -95,7 +95,7 @@ const routes = createBrowserRouter([
             {
                 path:'viewbiodata',
                 element:<ViewBioData/>,
-                // loader: ({params})=> fetch(`http://localhost:5000/boidatas/${params.email}`)
+                // loader: ({params})=> fetch(`https://matrimony-server-beige.vercel.app/boidatas/${params.email}`)
 
             },
             {

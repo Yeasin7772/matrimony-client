@@ -32,7 +32,7 @@ const Biodata = () => {
           maxAge: filters.maxAge === '' ? undefined : filters.maxAge,
         };
   
-        const response = await axios.get(`http://localhost:5000/biodatas/filter`, {
+        const response = await axios.get(`https://matrimony-server-beige.vercel.app/biodatas/filter`, {
           params: { ...filters, ...ageFilters },
         });
         setBiodata(response.data);

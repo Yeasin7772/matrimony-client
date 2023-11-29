@@ -1,4 +1,4 @@
-# React Basic Starter: Made by <a href="https://ismailjosim.netlify.app/">MD. JASIM</a>
+# React Basic Starter: Made by <a href="https://ismailjosim.netlify.app/">MD. YEASIN MOLLA</a>
 
 ### Packages includes
 
