@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import Container from '../../components/Container/Container';
 import useAuth from '../../hooks/useAuth';
 import useAdmin from '../../hooks/useAdmin';
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
@@ -11,7 +11,7 @@ const Navbar = () => {
     const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
     const userDropdownRef = useRef(null);
 
-    const { isAdmin } = useAdmin()
+    const { isAdmin } = useAdmin();
 
     const closeUserDropdown = () => setUserDropdownOpen(false);
 
@@ -54,51 +54,30 @@ const Navbar = () => {
 
     const navLinks = (
         <>
-            <NavLink to="/" className={({ isActive, isPending }) =>
-                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-            }>
+            <NavLink to="/" activeClassName="text-red-500 underline">
                 Home
             </NavLink>
-            <NavLink to="/biodata" className={({ isActive, isPending }) =>
-                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-            }>
+            <NavLink to="/biodata" activeClassName="text-red-500 underline">
                 Biodatas
             </NavLink>
-            <NavLink to="/about" className={({ isActive, isPending }) =>
-                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-            }>
+            <NavLink to="/about" activeClassName="text-red-500 underline">
                 About Us
             </NavLink>
-            <NavLink to="/contact" className={({ isActive, isPending }) =>
-                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-            }>
+            <NavLink to="/contact" activeClassName="text-red-500 underline">
                 Contact
             </NavLink>
 
-            {/* <NavLink to="/dashboard" className={({ isActive, isPending }) =>
-                isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-            }>
-                Dashboard
-            </NavLink> */}
-            {
-                user && isAdmin &&
-                <NavLink to='/dashboard/adminDashboard' className={({ isActive, isPending }) =>
-                    isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-                }>
+            {user && isAdmin && (
+                <NavLink to="/dashboard/adminDashboard" activeClassName="text-red-500 underline">
                     Dashboard
                 </NavLink>
+            )}
 
-            }
-            {
-
-                user && !isAdmin &&
-
-                <NavLink to='/dashboard/userHome' className={({ isActive, isPending }) =>
-                    isPending ? " text-black" : isActive ? "text-red-500 underline" : ""
-                }>
+            {user && !isAdmin && (
+                <NavLink to="/dashboard/userHome" activeClassName="text-red-500 underline">
                     Dashboard
                 </NavLink>
-            }
+            )}
         </>
     );
 
@@ -108,7 +87,7 @@ const Navbar = () => {
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="font-bold text-red-500 text-xl">
                         <Link to="/" aria-label="Home">
-                           <img className='w-52' src={logo} alt="" />
+                            <img className="w-52" src={logo} alt="" />
                         </Link>
                     </div>
 
@@ -136,7 +115,7 @@ const Navbar = () => {
                         </button>
 
                         {isMobileMenuOpen && (
-                            <div className="absolute top-0 left-0 right-0 z-50 bg-gray-800 text-white p-4">
+                            <div className="absolute flex flex-col top-0 left-0 right-0 z-50 bg-gray-800 text-white p-4">
                                 {navLinks}
                             </div>
                         )}

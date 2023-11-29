@@ -1,7 +1,18 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 import { Card, Progress, Typography } from "@material-tailwind/react";
 import Container from '../../Container/Container';
+
+// Loader component
+const LoaderCard = () => (
+    <Card>
+        <div className="p-4">
+            <div className="animate-pulse bg-gray-300 h-8 mb-4 w-3/4 mx-auto"></div>
+            <div className="animate-pulse bg-gray-300 h-4 w-1/2 mx-auto"></div>
+            <div className="animate-pulse bg-gray-300 h-4 w-3/4 mx-auto"></div>
+        </div>
+    </Card>
+);
 
 const SuccessCounter = () => {
     const [users, setUsers] = useState([]);
@@ -28,63 +39,41 @@ const SuccessCounter = () => {
 
     return (
         <Container>
-            <div>
-                <div className='text-center my-10'>
-                    <h1 className='text-4xl font-medium my-4 '>our Success Counter</h1>
-                </div>
+            <div className="text-center my-10">
+                <h1 className="text-4xl font-medium my-4 ">Our Success Counter</h1>
+            </div>
 
-                <div className="flex w-full flex-col gap-4">
-                    <div className="w-full ">
-                        <div className="mb-2 flex items-center justify-between gap-4">
-                            <Typography color="red" variant="h4">
-                                Total Biodata
-                            </Typography>
-                            <Typography color="blue-gray" variant="h6">
-                                {statistics.total}%
-                            </Typography>
-                        </div>
-                        <Progress color="red" autoRun value={statistics.total} />
-                    </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <LoaderCard />
+                <LoaderCard />
+                <LoaderCard />
+                <LoaderCard />
 
-                    <div className="w-full ">
-                        <div className="mb-2 flex items-center justify-between gap-4">
-                            <Typography color="amber" variant="h4">
-                                Total Boys
-                            </Typography>
-                            <Typography color="amber" variant="h6">
-                                {statistics.boys}%
-                            </Typography>
-                        </div>
-                        <Progress color="amber" autoRun value={statistics.boys} />
-                    </div>
 
-                    <div className="w-full ">
-                        <div className="mb-2 flex items-center justify-between gap-4">
-                            <Typography color="green" variant="h4">
-                                Total Girls
-                            </Typography>
-                            <Typography color="green" variant="h6">
-                                {statistics.girls}%
-                            </Typography>
-                        </div>
-                        <Progress color="green" autoRun value={statistics.girls} />
-                    </div>
-
-                    <div className="w-full ">
-                        <div className="mb-2 flex items-center justify-between gap-4">
-                            <Typography color="blue" variant="h4">
-                                Marriages Completed
-                            </Typography>
-                            <Typography color="blue-gray" variant="h6">
-                                {75}%
-                            </Typography>
-                        </div>
-                        <Progress color="blue" autoRun value={75} />
-                    </div>
-                </div>
+                <SuccessCard title="Total Biodata" value={statistics.total} color="red" />
+                <SuccessCard title="Total Boys" value={statistics.boys} color="amber" />
+                <SuccessCard title="Total Girls" value={statistics.girls} color="green" />
+                <SuccessCard title="Marriages Completed" value={75} color="blue" />
             </div>
         </Container>
     );
 };
+
+// SuccessCard component
+const SuccessCard = ({ title, value, color }) => (
+    <Card>
+        <div className="p-4">
+            <div className="mb-2 flex items-center justify-between gap-4">
+                <Typography color={color} variant="h4">
+                    {title}
+                </Typography>
+                <Typography color={color} variant="h6">
+                    {value}%
+                </Typography>
+            </div>
+            <Progress color={color} autoRun value={value} />
+        </div>
+    </Card>
+);
 
 export default SuccessCounter;

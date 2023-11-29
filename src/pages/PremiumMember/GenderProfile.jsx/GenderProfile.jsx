@@ -13,7 +13,7 @@ const GenderProfile = ({ item }) => {
                     <img
                         src={profileImage}
                         alt={`Profile of ${biodataId}`}
-                        className="w-full  object-cover"
+                        className="w-full h-full object-cover"
                     />
                 </CardHeader>
                 <CardBody>

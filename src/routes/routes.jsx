@@ -21,6 +21,7 @@ import MyContactRequest from '../components/Dashboard/AdminHome/UserHome/MyConta
 import CheckoutPage from '../components/CheckoutPage/CheckoutPage';
 import GotMarried from '../components/Dashboard/AdminHome/UserHome/GotMarried';
 import AllSuccessStory from '../components/Dashboard/AdminHome/AllSuccessStory';
+import AdminRoute from './AdminRoutes';
 
 
 
@@ -113,23 +114,23 @@ const routes = createBrowserRouter([
             /// admin routes
             {
                 path:'adminDashboard',
-                element: <AdminDashBoard/>
+                element: <AdminRoute><AdminDashBoard/></AdminRoute>
             },
             {
                 path:'manageUsers',
-                element: <ManageUsers/>
+                element: <AdminRoute><ManageUsers/></AdminRoute>
             },
             {
                 path:'approvedPremium',
-                element: <ApprovedPremium/>
+                element:<AdminRoute> <ApprovedPremium/></AdminRoute>
             },
             {
                 path:'approvedRequest',
-                element: <ApprovedRequest/>
+                element: <AdminRoute><ApprovedRequest/></AdminRoute>
             },
             {
                 path:'allSuccessStory',
-                element: <AllSuccessStory/>
+                element: <AdminRoute><AllSuccessStory/></AdminRoute>
             },
            
         ]

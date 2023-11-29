@@ -1,40 +1,36 @@
 import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
-import { useState, useEffect } from 'react'
-import React, { PureComponent } from 'react';
-import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer,Legend } from 'recharts';
+import { useState, useEffect } from 'react';
+import { PieChart, Pie, Tooltip, Cell, ResponsiveContainer, Legend } from 'recharts';
+
 const AdminDashBoard = () => {
-    const { user } = useAuth()
-    const [totalData, setTotalData] = useState()
-    const [totalBoy, setTotalBoy] = useState()
-    const [totalGirl, setTotalGirl] = useState()
-    const [totalPremium, setTotalPremium] = useState()
-    const axiosPublic = useAxiosPublic()
+    const { user } = useAuth();
+    const [totalData, setTotalData] = useState();
+    const [totalBoy, setTotalBoy] = useState();
+    const [totalGirl, setTotalGirl] = useState();
+    const [totalPremium, setTotalPremium] = useState();
+    const axiosPublic = useAxiosPublic();
 
     useEffect(() => {
         axiosPublic.get('/boidatas')
             .then(res => {
-                const total = res.data
+                const total = res.data;
                 const girls = total.filter(item => item.type === 'Female').length;
                 const boys = total.filter(item => item.type === 'Male').length;
                 const premium = total.filter(item => item.status === 'premium').length;
-                setTotalData(total)
-                setTotalBoy(boys)
-                setTotalGirl(girls)
-                setTotalPremium(premium)
+                setTotalData(total);
+                setTotalBoy(boys);
+                setTotalGirl(girls);
+                setTotalPremium(premium);
             })
-    }, [])
-    console.log(totalData, totalBoy, totalGirl, totalPremium);
-
-
-    // make pie chart 
+    }, []);
 
     const data = [
-        { name: 'Total  Data ', value: 400 },
-        { name: 'Total  Boy ', value: 200 },
+        { name: 'Total Data ', value: 400 },
+        { name: 'Total Boy ', value: 200 },
         { name: 'Total Girl ', value: 200 },
         { name: 'Total Premium ', value: 100 },
-        { name: 'Total  Revenue ', value: 500 },
+        { name: 'Total Revenue ', value: 500 },
     ];
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -52,9 +48,8 @@ const AdminDashBoard = () => {
         );
     };
 
-
     return (
-        <>
+        <div>
             <div className="flex flex-col md:flex-row justify-center gap-6 uppercase">
                 <div className="bg-[#0088FE] p-4 rounded-md shadow-md w-full">
                     <div className="text-lg font-semibold ">Total biodata</div>
@@ -64,47 +59,44 @@ const AdminDashBoard = () => {
                 <div className="bg-[#00C49F] p-4 rounded-md shadow-md w-full">
                     <div className="text-lg font-semibold">male biodata</div>
                     <div className="text-3xl font-bold text-gray-800">{totalBoy}</div>
-
                 </div>
                 <div className="bg-[#FFBB28] p-4 rounded-md shadow-md w-full">
                     <div className="text-lg font-semibold"> girls biodata</div>
                     <div className="text-3xl font-bold text-gray-800">{totalGirl}</div>
-
                 </div>
                 <div className="bg-[#FF8042] p-4 rounded-md shadow-md w-full">
                     <div className="text-lg font-semibold">Total Premium</div>
                     <div className="text-3xl font-bold text-gray-800">{totalPremium}</div>
-
                 </div>
                 <div className="bg-pink-400 p-4 rounded-md shadow-md w-full">
                     <div className="text-lg font-semibold ">total revenue</div>
                     <div className="text-3xl font-bold text-gray-800">31K</div>
-
                 </div>
             </div>
 
-
             <div className="flex justify-center items-center ">
-                <PieChart width={400} height={400}>
-                    <Pie
-                        data={data}
-                        cx="50%"
-                        cy="50%"
-                        labelLine={false}
-                        label={renderCustomizedLabel}
-                        outerRadius={80}
-                        fill="#8884d8"
-                        dataKey="value"
-                    >
-                        {data.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                        ))}
-                    </Pie>
-                    <Legend/> <Tooltip></Tooltip>
-                </PieChart>
+                <ResponsiveContainer width="100%" height={400}>
+                    <PieChart>
+                        <Pie
+                            data={data}
+                            cx="50%"
+                            cy="50%"
+                            labelLine={false}
+                            label={renderCustomizedLabel}
+                            outerRadius={80}
+                            fill="#8884d8"
+                            dataKey="value"
+                        >
+                            {data.map((entry, index) => (
+                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                            ))}
+                        </Pie>
+                        <Legend />
+                        <Tooltip />
+                    </PieChart>
+                </ResponsiveContainer>
             </div>
-
-        </>
+        </div>
     );
 };
 
