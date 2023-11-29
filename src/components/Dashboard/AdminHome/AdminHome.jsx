@@ -2,8 +2,7 @@
 
 
 const AdminHome = () => {
-  
-   
+
 
     return (
         <div>

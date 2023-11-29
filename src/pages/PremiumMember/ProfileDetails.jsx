@@ -24,7 +24,7 @@ const ProfileDetails = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    const isPremium = true
+    const isPremium = false
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
@@ -152,7 +152,7 @@ const ProfileDetails = () => {
                             floated={false}
                             shadow={false}
                             color="transparent"
-                            className=" w-full object-cover "
+                            className=" w-full h-[600px] "
                         >
                             <img
                                 src={data?.profileImage}
