@@ -1,20 +1,45 @@
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import Swal from "sweetalert2";
+import useAuth from "../../../../hooks/useAuth";
+// import { useEffect, useState } from "react";
 const TABLE_HEAD = ["ID", "Name", "Email", "Action"];
 const UserFavorites = () => {
-    const axiosPublic = useAxiosPublic()
-
-
+    const axiosPublic = useAxiosPublic();
+    // const [findData, setFindData]= useState()
+    const { user } = useAuth();
+    
+    // useEffect(()=>{
+    //     axiosPublic.get('/favorites')
+    //     .then(res => {
+    //         console.log('dadaddadad',res.data);
+    //         const userData = res.data
+            
+    //         const useAllData = userData.filter(item => item?.email === user?.email)
+    //         setFindData(useAllData)
+    //     })
+    // },[])
+    // console.log(findData);
+    
     const { data: favorites = [], refetch } = useQuery({
-        queryKey: ['favorites'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/favorites')
-            return res.data
+      queryKey: ['favorites', user?.email],
+      queryFn: async () => {
+        try {
+          const res = await axiosPublic.get('/favorites');
+          const userData = res.data;
+          const findData = userData.filter(item => item.email === user?.email);
+          console.log(findData);
+          // Provide a default value (e.g., null) if findData is undefined
+          return findData !== undefined ? findData : null;
+        } catch (error) {
+          // Handle error if needed
+          console.error('Error fetching favorites:', error);
+          throw error;
         }
-    })
+      },
+    });
+    
 
     const handelDeleted = (id) => {
 

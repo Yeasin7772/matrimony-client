@@ -2,17 +2,29 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { Button, Card, Typography } from "@material-tailwind/react";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
-const TABLE_HEAD = ["ID", "Name", "Email", "Status","Action",];
+import useAuth from "../../../../hooks/useAuth";
+const TABLE_HEAD = ["#", "Name", "Bio DataId", "Email", "Action",];
 
 const MyContactRequest = () => {
     const axiosPublic = useAxiosPublic()
+    const { user } = useAuth()
 
 
-    const { data: requests = [], refetch } = useQuery({
-        queryKey: ['requests'],
+    const { data: payment = [], refetch } = useQuery({
+        queryKey: ['payment', user?.email],
         queryFn: async () => {
-            const res = await axiosPublic.get('/request')
-            return res.data
+            try {
+                const res = await axiosPublic.get('/payment');
+                const userData = res.data;
+                const findData = userData.filter(item => item?.selfEmail === user?.email);
+                console.log(findData);
+
+                return findData !== undefined ? findData : null;
+            } catch (error) {
+
+                console.error('Error fetching payment:', error);
+                throw error;
+            }
         }
     })
 
@@ -31,7 +43,7 @@ const MyContactRequest = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                axiosPublic.delete(`/request/${id}`)
+                axiosPublic.delete(`/payment/${id}`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
                             refetch()
@@ -49,58 +61,56 @@ const MyContactRequest = () => {
     }
     return (
         <div>
-        <Card className="h-full w-full overflow-scroll">
-            <table className="w-full min-w-max table-auto text-left">
-                <thead>
-                    <tr>
-                        {TABLE_HEAD.map((head) => (
-                            <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
-                                <Typography
-                                    variant="small"
-                                    color="blue-gray"
-                                    className="font-normal leading-none opacity-70"
-                                >
-                                    {head}
-                                </Typography>
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    {requests?.map(({ _id, name, email, occupation, biodataId }, index) => (
-                        <tr key={name} className="even:bg-blue-gray-50/50">
-                            <td className="p-4">
-                                <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {biodataId}
-                                </Typography>
-                            </td>
-                            <td className="p-4">
-                                <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {name}
-                                </Typography>
-                            </td>
-                            <td className="p-4">
-                                <Typography variant="small" color="blue-gray" className="font-normal">
-                                    {email}
-                                </Typography>
-                            </td>
-                            <td className="p-4">
-                                <Button >
-                                    pending
-                                </Button>
-                            </td>
-                            <td className="p-4">
-                                <Button onClick={() => handelDeleted(_id)}>
-                                    deleted
-                                </Button>
-                            </td>
-
+            <Card className="h-full w-full overflow-scroll">
+                <table className="w-full min-w-max table-auto text-left">
+                    <thead>
+                        <tr>
+                            {TABLE_HEAD.map((head) => (
+                                <th key={head} className="border-b border-blue-gray-100 bg-blue-gray-50 p-4">
+                                    <Typography
+                                        variant="small"
+                                        color="blue-gray"
+                                        className="font-normal leading-none opacity-70"
+                                    >
+                                        {head}
+                                    </Typography>
+                                </th>
+                            ))}
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-        </Card>
-    </div>
+                    </thead>
+                    <tbody>
+                        {payment?.map(({ _id, name, email, selfEmail, biodataId }, index) => (
+                            <tr key={name} className="even:bg-blue-gray-50/50">
+                                <td className="p-4">
+                                    <Typography variant="small" color="blue-gray" className="font-normal">
+                                        {++index}
+                                    </Typography>
+                                </td>
+                                <td className="p-4">
+                                    <Typography variant="small" color="blue-gray" className="font-normal">
+                                        {name}
+                                    </Typography>
+                                </td>
+                                <td className="p-4">
+                                    <Typography variant="small" color="blue-gray" className="font-normal">
+                                        {biodataId}
+                                    </Typography>
+                                </td>
+                                <td className="p-4">
+                                    {selfEmail}
+                                </td>
+                                <td className="p-4">
+                                    <Button onClick={() => handelDeleted(_id)}>
+                                        deleted
+                                    </Button>
+                                </td>
+
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </Card>
+        </div>
     );
 };
 

@@ -74,6 +74,11 @@ const Dashboard = () => {
                                         <FaHome></FaHome>
                                         Favorites Biodata</NavLink>
                                 </li>
+                                <li>
+                                    <NavLink to="/dashboard/createStory">
+                                        <FaHome></FaHome>
+                                        Create Story Married</NavLink>
+                                </li>
 
 
 

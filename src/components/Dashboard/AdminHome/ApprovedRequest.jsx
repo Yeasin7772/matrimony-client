@@ -4,10 +4,10 @@ import { Button, Card, Typography } from "@material-tailwind/react";
 const TABLE_HEAD = ["#","Biodata ID", "Name", "Email", "Role",];
 const ApprovedRequest = () => {
     const axiosSecure = useAxiosSecure()
-    const { data: requests = [], isPending: loading, refetch } = useQuery({
-        queryKey: ['requests'],
+    const { data: payments = [], isPending: loading, refetch } = useQuery({
+        queryKey: ['payments'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/request')
+            const res = await axiosSecure.get('/payment')
             return res.data
         }
     })
@@ -34,7 +34,7 @@ const ApprovedRequest = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {requests?.map(({ name, email, biodataId, }, index) => (
+                        {payments?.map(({ name, selfEmail, biodataId, }, index) => (
                             <tr key={name} className="even:bg-blue-gray-50/50">
                                 <td className="p-4">
                                     <Typography variant="small" color="blue-gray" className="font-normal">
@@ -53,17 +53,10 @@ const ApprovedRequest = () => {
                                 </td>
                                 <td className="p-4">
                                     <Typography variant="small" color="blue-gray" className="font-normal">
-                                        {email}
+                                        {selfEmail}
                                     </Typography>
                                 </td>
-                                {/* <td className="p-4">
-                                    {
-                                        role === 'admin' ? <span className="text-xl text-primary">Admin</span> :
-                                            <button onClick={() => handelMakeAdmin(_id)}
-                                                className="btn  ">
-                                                <FaUsers className="text-green-500 text-2xl" /></button>
-                                    }
-                                </td> */}
+                                
                                 <td className="p-4">
                                     <Button>
                                         Approved request

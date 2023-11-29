@@ -4,7 +4,7 @@ import useAxiosPublic from '../../hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 
 
-const CheckoutForm = ({ biodataId, selfBiodataId, selfEmail }) => {
+const CheckoutForm = ({ biodataId, selfBiodataId, selfEmail,name }) => {
     const axiosPublic = useAxiosPublic();
     const stripe = useStripe();
     const elements = useElements();
@@ -35,6 +35,7 @@ const CheckoutForm = ({ biodataId, selfBiodataId, selfEmail }) => {
                     biodataId,
                     selfBiodataId,
                     selfEmail,
+                    name,
                 }
 
                 const response = await axiosPublic.post('/payment', payment);

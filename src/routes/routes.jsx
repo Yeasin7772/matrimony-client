@@ -19,6 +19,7 @@ import EditBiodata from '../components/Dashboard/AdminHome/UserHome/EditBiodata'
 import ViewBioData from '../components/Dashboard/AdminHome/UserHome/ViewBioData';
 import MyContactRequest from '../components/Dashboard/AdminHome/UserHome/MyContactRequest';
 import CheckoutPage from '../components/CheckoutPage/CheckoutPage';
+import GotMarried from '../components/Dashboard/AdminHome/UserHome/GotMarried';
 
 
 
@@ -99,6 +100,12 @@ const routes = createBrowserRouter([
             {
                 path:'userRequest',
                 element:<MyContactRequest/>,
+              
+
+            },
+            {
+                path:'createStory',
+                element:<GotMarried/>,
               
 
             },

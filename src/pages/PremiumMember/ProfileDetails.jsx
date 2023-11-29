@@ -137,7 +137,7 @@ const ProfileDetails = () => {
                             floated={false}
                             shadow={false}
                             color="transparent"
-                            className=" w-full h-96 object-cover "
+                            className=" w-full object-cover "
                         >
                             <img
                                 src={data?.profileImage}
@@ -168,15 +168,15 @@ const ProfileDetails = () => {
                                     <Typography variant="lead" color="gray" className="mt-3 font-normal">
                                         contact Info :    {data?.email}
                                     </Typography>
-                                </> : <Button onClick={() => handelAddToRequest(data)} className="bg-blue-600 text-black">Add Request Contact</Button>
+                                </> : <Link to='/checkoutPage'>
+                                    <Button variant="outlined" className="bg-blue-800 text-black">ADD checkOut</Button>
+                                </Link>
                             }
                         </CardBody>
                         <CardFooter className="pt-0">
-                            <Link to='/checkoutPage'>
-                                <Button className="bg-blue-800 text-black">ADD checkOut</Button>
-                            </Link>
 
-                            <Button onClick={() => handelAddToFavorite(data)} className="bg-yellow-400 text-black">ADD favorite</Button>
+
+                            <Button variant="outlined" onClick={() => handelAddToFavorite(data)} className="bg-yellow-400 text-black">ADD favorite</Button>
 
                         </CardFooter>
                     </Card>

@@ -13,6 +13,7 @@ const CheckoutPage = () => {
     const biodataId = '123';
     const selfBiodataId = '456';
     const selfEmail = user?.email
+    const name = user?.displayName
 
     return (
         <div>
@@ -23,6 +24,7 @@ const CheckoutPage = () => {
                         biodataId={biodataId}
                         selfBiodataId={selfBiodataId}
                         selfEmail={selfEmail}
+                        name={name}
                     />
                 </Elements>
             </Container>

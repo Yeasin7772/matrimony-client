@@ -104,11 +104,11 @@ const Navbar = () => {
 
     return (
         <Container>
-            <nav className="bg-gray-600 p-4 text-2xl bg-opacity-20 text-black font-bold z-10 fixed top-0 left-0 w-full">
+            <nav className="bg-gray-600 p-4 text-xl bg-opacity-20 text-black font-bold z-10 fixed top-0 left-0 w-full">
                 <div className="container mx-auto flex justify-between items-center">
                     <div className="font-bold text-red-500 text-xl">
                         <Link to="/" aria-label="Home">
-                           <img className='w-60' src={logo} alt="" />
+                           <img className='w-52' src={logo} alt="" />
                         </Link>
                     </div>
 
