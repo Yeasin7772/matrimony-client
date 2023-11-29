@@ -21,15 +21,19 @@ import Container from '../../Container/Container';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
 
 const SuccessStory = () => {
-    const [success, setSuccess] = useState()
     const axiosPublic = useAxiosPublic()
+    const [successData, setSuccessData] = useState()
+  
+
+
+
     useEffect(() => {
         axiosPublic.get('/success')
             .then(res => {
-                setSuccess(res.data)
+                setSuccessData(res.data)
             })
     }, [])
-    console.log(success);
+    console.log(successData);
 
     return (
         <>
@@ -54,15 +58,15 @@ const SuccessStory = () => {
                     style={{ height: '400px' }}
                 >
                     {
-                        success?.map(item => <SwiperSlide key={item._id}>
-                            <Card key={item._id} className="w-full flex-col md:flex-row">
+                        successData?.map(item => <SwiperSlide key={item?._id}>
+                            <Card key={item?._id} className="w-full flex-col md:flex-row">
                                 <CardHeader
                                     shadow={false}
                                     floated={false}
                                     className="m-0 w-full rounded-r-none"
                                 >
                                     <img
-                                        src={item.couple_image}
+                                        src={item?.couple_image}
                                         alt="card-image"
                                         className="h-full w-full object-cover"
                                     />
@@ -72,10 +76,10 @@ const SuccessStory = () => {
                                     Marriage Date :  { item?.marriage_date}
                                     </Typography>
                                     <Typography variant="h4" color="blue-gray" className="mb-2">
-                                        {item.success_text}
+                                        {item?.success_text}
                                     </Typography>
                                     <Typography color="gray" className="mb-8 font-normal">
-                                        {item.success_text.substring(0, 200)}...
+                                        {item?.success_text.substring(0, 200)}...
                                     </Typography>
                                     <Typography >
                                     <Rating value={5} />

@@ -1,21 +1,24 @@
 import React, { useState } from 'react';
+import useAxiosPublic from '../../../../hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const GotMarried = () => {
+  const axiosPublic = useAxiosPublic();
   const [formData, setFormData] = useState({
     selfBiodataNumber: '',
     partnerBiodataNumber: '',
-    marriageDate: '',
-    coupleImageLink: '',
-    successStoryReview: '',
-    review_star: '', // Add this field
+    marriage_Date: '',
+    couple_image: '',
+    success_text: '',
+    review_star: '',
   });
 
   const {
     selfBiodataNumber,
     partnerBiodataNumber,
-    marriageDate,
-    coupleImageLink,
-    successStoryReview,
+    marriage_Date,
+    couple_image,
+    success_text,
     review_star,
   } = formData;
 
@@ -29,7 +32,29 @@ const GotMarried = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Form Data:', formData);
-    // Handle form submission logic here
+    axiosPublic.post('/success', formData)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `Added your story Request`,
+            showConfirmButton: false,
+            timer: 1500
+          });
+
+          // Reset the form
+          setFormData({
+            selfBiodataNumber: '',
+            partnerBiodataNumber: '',
+            marriage_Date: '',
+            couple_image: '',
+            success_text: '',
+            review_star: '',
+          });
+        }
+      });
   };
 
   return (
@@ -77,15 +102,15 @@ const GotMarried = () => {
         <div className="mb-4 col-span-1">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="marriageDate"
+            htmlFor="marriage_Date"
           >
             Marriage Date
           </label>
           <input
-            type="text"
-            id="marriageDate"
-            name="marriageDate"
-            value={marriageDate}
+            type="date"
+            id="marriage_Date"
+            name="marriage_Date"
+            value={marriage_Date}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter Marriage Date"
@@ -95,15 +120,15 @@ const GotMarried = () => {
         <div className="mb-4 col-span-2">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="coupleImageLink"
+            htmlFor="couple_image"
           >
             Couple Image Link
           </label>
           <input
             type="text"
-            id="coupleImageLink"
-            name="coupleImageLink"
-            value={coupleImageLink}
+            id="couple_image"
+            name="couple_image"
+            value={couple_image}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="Enter Couple Image Link"
@@ -117,9 +142,9 @@ const GotMarried = () => {
             Success Story Review
           </label>
           <textarea
-            id="successStoryReview"
-            name="successStoryReview"
-            value={successStoryReview}
+            id="success_text"
+            name="success_text"
+            value={success_text}
             onChange={handleChange}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
             placeholder="Share your feelings about using this website..."
@@ -134,13 +159,14 @@ const GotMarried = () => {
             Review Star
           </label>
           <input
-            type="text"
+            type="range"
             id="review_star"
             name="review_star"
             value={review_star}
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="Enter Review Star"
+            min="1"
+            max="5"
+            className="w-full"
           />
         </div>
         <div className="col-span-full flex items-center justify-center">
