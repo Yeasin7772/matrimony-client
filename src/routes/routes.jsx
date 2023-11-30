@@ -8,7 +8,6 @@ import Biodata from '../pages/Biodatas/Biodata';
 import Contact from '../pages/Contact/Contact';
 import ProfileDetails from '../pages/PremiumMember/ProfileDetails';
 import Dashboard from '../components/Dashboard/Dashboard';
-import PrivateRoute from '../routes/PrivateRoute'
 import AdminDashBoard from '../components/Dashboard/AdminHome/AdminDashBoard';
 import ManageUsers from '../components/Dashboard/AdminHome/ManageUsers';
 import ApprovedRequest from '../components/Dashboard/AdminHome/ApprovedRequest';
@@ -22,6 +21,8 @@ import CheckoutPage from '../components/CheckoutPage/CheckoutPage';
 import GotMarried from '../components/Dashboard/AdminHome/UserHome/GotMarried';
 import AllSuccessStory from '../components/Dashboard/AdminHome/AllSuccessStory';
 import AdminRoute from './AdminRoutes';
+import PrivateRoute from '../routes/PrivateRoute'
+import About from '../pages/About/About';
 
 
 
@@ -44,7 +45,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <h3>This is about page</h3>
+                element: <About/>
             },
             {
                 path: '/contact',

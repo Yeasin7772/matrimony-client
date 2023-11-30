@@ -1,4 +1,4 @@
-import { FaAd, FaClipboardList, FaCalendar, FaHome, FaShoppingCart, FaEnvelope, FaUtensils, FaList, FaUsers, FaBook } from "react-icons/fa";
+import { FaStreetView, FaRegGem, FaAddressCard, FaHome, FaEdit , FaDna , FaUtensils, FaList, FaUsers, FaBook } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import useAuth from "../../hooks/useAuth";
@@ -59,22 +59,22 @@ const Dashboard = () => {
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/editBiodata">
-                                        <FaHome></FaHome>
+                                        <FaEdit ></FaEdit>
                                         Edit Biodata</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/viewbiodata">
-                                        <FaHome></FaHome>
+                                        <FaStreetView></FaStreetView>
                                         View Biodata</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/userRequest">
-                                        <FaHome></FaHome>
+                                        <FaAddressCard></FaAddressCard>
                                         My Contact Request</NavLink>
                                 </li>
                                 <li>
                                     <NavLink to="/dashboard/userFavorites">
-                                        <FaHome></FaHome>
+                                        <FaRegGem></FaRegGem>
                                         Favorites Biodata</NavLink>
                                 </li>
                                 <li>
@@ -90,7 +90,7 @@ const Dashboard = () => {
                                     <NavLink to='/'> <FaHome />  Home</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink  onClick={handelLogOut} > <FaUsers /> Logout</NavLink>
+                                    <NavLink  onClick={handelLogOut} > <FaDna  /> Logout</NavLink>
                                 </li>
 
 

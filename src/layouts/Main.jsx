@@ -11,7 +11,7 @@ const Main = () => {
             <Navbar />
             {/* <Header /> */}
             <Outlet />
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 };

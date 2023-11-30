@@ -4,7 +4,7 @@ import Benefits from "../components/Benefits/Benefits";
 import HowWork from "../components/home/HowWork/HowWork";
 import SuccessCounter from "../components/home/SuccessCounter/SuccessCounter";
 import SuccessStory from "../components/home/SuccessStory/SuccessStory";
-import Footer from "../layouts/Footer";
+// import Footer from "../layouts/Footer";
 import Header from "../layouts/Header";
 import PremiumMember from "./PremiumMember/PremiumMember";
 
@@ -21,7 +21,7 @@ const Home = () => {
             <SuccessCounter/>
             <SuccessStory/>
             <Benefits />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 };

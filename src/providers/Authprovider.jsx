@@ -14,7 +14,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 export const AuthContext = createContext()
 const AuthProviders = ({ children }) => {
 
-    const [user, setUser] = useState(null)
+    const [user, setUser] = useState({})
     const [loading, setLoading] = useState(true)
     const axiosPublic = useAxiosPublic()
 
@@ -55,7 +55,7 @@ const AuthProviders = ({ children }) => {
             }
             else {
                 // remove token 
-                localStorage.removeItem('access token')
+                localStorage.removeItem('access-token')
                 setLoading(false)
             }
 
