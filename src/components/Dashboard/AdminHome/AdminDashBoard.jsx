@@ -30,7 +30,7 @@ const AdminDashBoard = () => {
         { name: 'Total Boy ', value: 200 },
         { name: 'Total Girl ', value: 200 },
         { name: 'Total Premium ', value: 100 },
-        { name: 'Total Revenue ', value: 500 },
+        { name: 'Total Revenue ', value: 1000 },
     ];
 
     const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -70,11 +70,11 @@ const AdminDashBoard = () => {
                 </div>
                 <div className="bg-pink-400 p-4 rounded-md shadow-md w-full">
                     <div className="text-lg font-semibold ">total revenue</div>
-                    <div className="text-3xl font-bold text-gray-800">31K</div>
+                    <div className="text-3xl font-bold text-gray-800">1000</div>
                 </div>
             </div>
 
-            <div className="flex justify-center items-center ">
+            <div className="flex justify-center items-center overflow-scroll ">
                 <ResponsiveContainer width="100%" height={400}>
                     <PieChart>
                         <Pie

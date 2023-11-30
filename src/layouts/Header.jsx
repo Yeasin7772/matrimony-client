@@ -8,7 +8,7 @@ import img5 from '../assets/banner_05.jpg';
 
 const Header = () => {
     return (
-      
+        <Container>
             <Carousel
                 showArrows={false}
                 showStatus={false}
@@ -23,24 +23,24 @@ const Header = () => {
                     <img src={img1} alt="Banner 1" className="object-cover w-full h-full" />
                     <div className="absolute inset-0 bg-black opacity-40"></div>
                     <div className="absolute text-white z-10 text-center">
-                        <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+                        <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
                             Someone Somewhere is Dreaming of You
                         </h1>
-                        <p className="text-lg sm:text-xl">Find your perfect match today!</p>
+                        <p className="text-lg sm:text-xl lg:text-2xl">Find your perfect match today!</p>
                     </div>
                 </div>
-             
+
                 <div className="relative h-screen">
                     <img src={img4} alt="Banner 2" className="object-cover w-full h-full" />
                     <div className="absolute inset-0 bg-black opacity-40"></div>
                 </div>
+
                 <div className="relative h-screen">
-                    <img src={img5} alt="Banner 2" className="object-cover w-full h-full" />
+                    <img src={img5} alt="Banner 3" className="object-cover w-full h-full" />
                     <div className="absolute inset-0 bg-black opacity-40"></div>
                 </div>
-               
-            </Carousel> 
-      
+            </Carousel>
+        </Container>
     );
 };
 

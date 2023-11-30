@@ -15,6 +15,7 @@ import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import usePremium from "../../hooks/usePremium";
 
 const ProfileDetails = () => {
     const data = useLoaderData();
@@ -23,7 +24,7 @@ const ProfileDetails = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
 
-    const isPremium = false;
+  const {isPremium} = usePremium()
 
     const { data: users = [], refetch } = useQuery({
         queryKey: ["users"],
